@@ -21,7 +21,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="http://www.integraluniversity.ac.in/"
+                  href="https://www.iul.ac.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-foreground/80 hover:text-accent transition-colors"

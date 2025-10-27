@@ -1,8 +1,67 @@
 import { BookOpen, ExternalLink } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const Books = () => {
+  const publishedBooks = [
+    {
+      title: "Book Title 1",
+      description: "Comprehensive guide covering fundamental concepts and advanced topics",
+      publisher: "Publisher Name",
+      year: "2020",
+      link: "https://example.com/book1",
+    },
+    {
+      title: "Book Title 2",
+      description: "In-depth exploration of electronics and communication principles",
+      publisher: "Publisher Name",
+      year: "2021",
+      link: "https://example.com/book2",
+    },
+    {
+      title: "Book Title 3",
+      description: "Practical approach to modern engineering concepts",
+      publisher: "Publisher Name",
+      year: "2019",
+      link: "https://example.com/book3",
+    },
+    {
+      title: "Book Title 4",
+      description: "Advanced topics in electrical engineering",
+      publisher: "Publisher Name",
+      year: "2022",
+      link: "https://example.com/book4",
+    },
+    {
+      title: "Book Title 5",
+      description: "Essential guide for undergraduate engineering students",
+      publisher: "Publisher Name",
+      year: "2018",
+      link: "https://example.com/book5",
+    },
+    {
+      title: "Book Title 6",
+      description: "Comprehensive textbook on circuit theory and analysis",
+      publisher: "Publisher Name",
+      year: "2023",
+      link: "https://example.com/book6",
+    },
+    {
+      title: "Book Title 7",
+      description: "Modern approaches to digital electronics",
+      publisher: "Publisher Name",
+      year: "2021",
+      link: "https://example.com/book7",
+    },
+    {
+      title: "Book Title 8",
+      description: "Complete reference for power systems engineering",
+      publisher: "Publisher Name",
+      year: "2022",
+      link: "https://example.com/book8",
+    },
+  ];
+
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +77,54 @@ const Books = () => {
           </p>
         </div>
 
-        {/* Books Section */}
+        {/* Published Books Grid */}
+        <section className="mb-20 animate-fade-in-up">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12">
+            My Published Books
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {publishedBooks.map((book, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30 cursor-pointer animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => window.open(book.link, "_blank")}
+              >
+                <CardHeader>
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <BookOpen className="w-6 h-6 text-primary" />
+                    </div>
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    {book.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm">
+                    {book.publisher} • {book.year}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                    {book.description}
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(book.link, "_blank");
+                    }}
+                  >
+                    View Book
+                    <ExternalLink className="ml-2 w-4 h-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Books Overview Section */}
         <section className="mb-20 animate-fade-in-up">
           <Card className="border-2 hover:shadow-xl transition-shadow bg-gradient-to-br from-primary/5 to-accent/5">
             <CardHeader>

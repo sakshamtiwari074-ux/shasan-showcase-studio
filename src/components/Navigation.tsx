@@ -22,6 +22,7 @@ const Navigation = () => {
     { path: "/research", label: "Research" },
     { path: "/teaching", label: "Teaching" },
     { path: "/books", label: "Books" },
+    { path: "/courses", label: "Courses" },
     { path: "/resources", label: "Resources" },
     { path: "/contact", label: "Contact" },
   ];
@@ -38,7 +39,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           <Link
             to="/"
-            className="text-xl sm:text-2xl font-bold text-primary hover:text-secondary transition-colors"
+            className={`text-xl sm:text-2xl font-bold transition-colors ${
+              isScrolled
+                ? "text-primary hover:text-secondary"
+                : "text-white hover:text-accent drop-shadow-lg"
+            }`}
           >
             Dr. Syed Hasan Saeed
           </Link>
@@ -51,8 +56,12 @@ const Navigation = () => {
                   variant="ghost"
                   className={`text-sm lg:text-base ${
                     location.pathname === link.path
-                      ? "text-primary font-semibold"
-                      : "text-foreground hover:text-primary"
+                      ? isScrolled
+                        ? "text-primary font-semibold"
+                        : "text-white font-semibold drop-shadow-lg"
+                      : isScrolled
+                      ? "text-foreground hover:text-primary"
+                      : "text-white/90 hover:text-white drop-shadow-md"
                   }`}
                 >
                   {link.label}
@@ -63,7 +72,11 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground hover:text-primary transition-colors"
+            className={`md:hidden transition-colors ${
+              isScrolled
+                ? "text-foreground hover:text-primary"
+                : "text-white hover:text-accent drop-shadow-lg"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

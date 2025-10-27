@@ -1,4 +1,4 @@
-import { ArrowRight, GraduationCap, BookOpen, Users } from "lucide-react";
+import { ArrowRight, GraduationCap, BookOpen, Users, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -45,15 +45,15 @@ const Home = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               Dr. Syed Hasan Saeed
             </h1>
             
-            <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-8 font-light">
+            <p className="text-xl sm:text-2xl md:text-3xl text-white/95 mb-8 font-light drop-shadow-md">
               Electronics & Communication Engineering
             </p>
             
-            <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
               Empowering the next generation of engineers through innovative teaching, 
               cutting-edge research, and a passion for electronics and communication technology.
             </p>
@@ -66,7 +66,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm shadow-lg">
+                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all">
                   Get in Touch
                 </Button>
               </Link>
@@ -126,6 +126,19 @@ const Home = () => {
                   "Education is not the filling of a pail, but the lighting of a fire. Through dedication to teaching 
                   and research, we illuminate the path for future innovators in electronics and communication technology."
                 </p>
+              </div>
+              
+              <div className="mt-8 flex justify-center">
+                <a
+                  href="https://www.youtube.com/@s.h.tutorials"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-destructive hover:bg-destructive/90 text-destructive-foreground rounded-lg transition-all shadow-lg hover:shadow-xl group"
+                >
+                  <Youtube className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <span className="font-semibold">Visit My YouTube Channel</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
               </div>
             </div>
           </div>

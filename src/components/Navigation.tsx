@@ -87,7 +87,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-card/98 backdrop-blur-lg border-t border-border animate-fade-in">
+        <div className="md:hidden bg-card backdrop-blur-lg border-t border-border animate-fade-in">
           <div className="container mx-auto px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <Link

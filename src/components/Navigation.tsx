@@ -32,7 +32,7 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || !isHomePage
-          ? "bg-card/95 backdrop-blur-lg shadow-md"
+          ? "bg-card backdrop-blur-lg shadow-md"
           : "bg-transparent"
       }`}
     >
@@ -58,8 +58,8 @@ const Navigation = () => {
                   className={`text-sm lg:text-base ${
                     location.pathname === link.path
                       ? isScrolled || !isHomePage
-                        ? "text-primary font-semibold"
-                        : "text-white font-semibold drop-shadow-lg"
+                        ? "text-primary font-semibold border-b-2 border-primary rounded-none"
+                        : "text-white font-semibold drop-shadow-lg border-b-2 border-white rounded-none"
                       : isScrolled || !isHomePage
                       ? "text-foreground hover:text-primary"
                       : "text-white/90 hover:text-white drop-shadow-md"

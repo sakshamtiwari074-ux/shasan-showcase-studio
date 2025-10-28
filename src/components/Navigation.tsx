@@ -7,6 +7,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +31,7 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || !isHomePage
           ? "bg-card/95 backdrop-blur-lg shadow-md"
           : "bg-transparent"
       }`}
@@ -40,7 +41,7 @@ const Navigation = () => {
           <Link
             to="/"
             className={`text-xl sm:text-2xl font-bold transition-colors ${
-              isScrolled
+              isScrolled || !isHomePage
                 ? "text-primary hover:text-secondary"
                 : "text-white hover:text-accent drop-shadow-lg"
             }`}
@@ -56,10 +57,10 @@ const Navigation = () => {
                   variant="ghost"
                   className={`text-sm lg:text-base ${
                     location.pathname === link.path
-                      ? isScrolled
+                      ? isScrolled || !isHomePage
                         ? "text-primary font-semibold"
                         : "text-white font-semibold drop-shadow-lg"
-                      : isScrolled
+                      : isScrolled || !isHomePage
                       ? "text-foreground hover:text-primary"
                       : "text-white/90 hover:text-white drop-shadow-md"
                   }`}
@@ -73,7 +74,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             className={`md:hidden transition-colors ${
-              isScrolled
+              isScrolled || !isHomePage
                 ? "text-foreground hover:text-primary"
                 : "text-white hover:text-accent drop-shadow-lg"
             }`}
@@ -98,7 +99,11 @@ const Navigation = () => {
                   variant="ghost"
                   className={`w-full justify-start text-base ${
                     location.pathname === link.path
-                      ? "text-primary font-semibold bg-primary/10"
+                      ? isHomePage
+                        ? "text-white font-semibold bg-white/10"
+                        : "text-primary font-semibold bg-primary/10"
+                      : isHomePage
+                      ? "text-white/90 hover:text-white hover:bg-white/5"
                       : "text-foreground hover:text-primary hover:bg-primary/5"
                   }`}
                 >

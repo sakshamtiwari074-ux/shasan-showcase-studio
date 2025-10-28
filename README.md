@@ -12,7 +12,9 @@ This is a professional academic portfolio website for Dr. Syed Hasan Saeed, Prof
 
 ### How to Update Book Information
 
-The book cards are located in `src/pages/Books.tsx`. To update book details:
+The book cards are located in `src/pages/Books.tsx`. Each book card displays a cover image, title, publisher, year, description, and a clickable link to the book's purchase page.
+
+#### Step 1: Update Book Details
 
 1. Open `src/pages/Books.tsx`
 2. Find the `publishedBooks` array (around line 6)
@@ -20,11 +22,12 @@ The book cards are located in `src/pages/Books.tsx`. To update book details:
 
 ```typescript
 {
-  title: "Your Actual Book Title",           // Replace with your book's title
-  description: "Book description",            // Add a brief description
-  publisher: "Publisher Name",                // Add publisher name
-  year: "2024",                              // Publication year
-  link: "https://amazon.com/your-book",      // Link to where book can be purchased
+  title: "Your Actual Book Title",                    // Replace with your book's title
+  description: "Book description",                     // Add a brief description
+  publisher: "Publisher Name",                         // Add publisher name
+  year: "2024",                                       // Publication year
+  link: "https://amazon.com/your-book",               // Link to where book can be purchased
+  coverImage: "/placeholder.svg",                     // Path to book cover image
 }
 ```
 
@@ -36,8 +39,46 @@ The book cards are located in `src/pages/Books.tsx`. To update book details:
   publisher: "McGraw-Hill Education",
   year: "2023",
   link: "https://www.amazon.in/dp/YOURCODE",
+  coverImage: "/path/to/your/book-cover.jpg",        // Use your actual image path
 }
 ```
+
+#### Step 2: Add Book Cover Images
+
+You have three options for adding book cover images:
+
+**Option A: Upload images to the public folder (Recommended)**
+1. Save your book cover images (preferably in JPG or PNG format)
+2. Upload them to the `public` folder in your project
+3. Reference them in the code like this:
+   ```typescript
+   coverImage: "/book-covers/circuit-theory.jpg"
+   ```
+   (This will look for the file at `public/book-covers/circuit-theory.jpg`)
+
+**Option B: Use image URLs from the web**
+1. Find the book cover image URL online (right-click on image → Copy Image Address)
+2. Use the direct URL:
+   ```typescript
+   coverImage: "https://example.com/path/to/book-cover.jpg"
+   ```
+
+**Option C: Upload to src/assets folder**
+1. Save images to `src/assets/book-covers/` folder
+2. Import them at the top of `Books.tsx`:
+   ```typescript
+   import circuitTheoryBook from "@/assets/book-covers/circuit-theory.jpg";
+   ```
+3. Use the imported variable:
+   ```typescript
+   coverImage: circuitTheoryBook
+   ```
+
+**Recommended Image Specifications:**
+- Aspect Ratio: 3:4 (portrait, typical book cover ratio)
+- Minimum Resolution: 600x800 pixels
+- Format: JPG or PNG
+- File Size: Under 500KB for optimal loading
 
 ### How to Update Udemy Course Information
 
@@ -75,10 +116,15 @@ The course cards are located in `src/pages/Courses.tsx`. To update course detail
 ### How to Update Links
 
 #### Integral University Link
-Located in `src/components/Footer.tsx` (line 23):
-```typescript
-href="https://www.iul.ac.in"
-```
+Located in two places:
+1. `src/components/Footer.tsx` (line 24):
+   ```typescript
+   href="https://www.iul.ac.in"
+   ```
+2. `src/pages/Resources.tsx` (line 56):
+   ```typescript
+   url: "https://www.iul.ac.in"
+   ```
 
 #### YouTube Channel Link
 Located in `src/pages/Home.tsx` (line 133):
@@ -87,7 +133,7 @@ href="https://www.youtube.com/@s.h.tutorials"
 ```
 
 #### Udemy Profile Link
-Located in `src/pages/Courses.tsx` (line 194):
+Located in `src/pages/Courses.tsx` (around line 194):
 ```typescript
 href="https://www.udemy.com/user/your-profile"
 ```
@@ -95,11 +141,78 @@ Replace `your-profile` with your actual Udemy username.
 
 ### How to Update Contact Information
 
+#### Email Address
+The email `hasansaeedcontrol@gmail.com` is displayed in:
+1. `src/pages/Contact.tsx` (line 79-83) - Contact page email display
+2. `src/components/Footer.tsx` (line 56-60) - Footer email link
+
+To change the email, update both locations with your new email address.
+
+#### Other Contact Details
 Located in `src/pages/Contact.tsx`:
-- Update email address
-- Update phone number
-- Update office address
-- Update office hours
+- Office address (lines 65-70)
+- Location (lines 92-94)
+- Office hours (lines 107-117)
+
+### How to Setup Email Notifications for Contact Form
+
+The contact form currently shows a success toast message when submitted. To receive actual email notifications when someone submits the form, you can use **Mailchimp** or other email services. Here's how:
+
+#### Option 1: Using Mailchimp (Recommended)
+
+1. **Create a Mailchimp Account**
+   - Go to [mailchimp.com](https://mailchimp.com) and sign up for a free account
+   - Create a new audience/list for contact form submissions
+
+2. **Get Your Mailchimp API Key**
+   - Go to Account → Extras → API Keys
+   - Create a new API key and copy it
+
+3. **Enable Lovable Cloud** (Required for backend functionality)
+   - Click on the Cloud tab in Lovable
+   - Follow the prompts to enable Lovable Cloud
+   - This will give you access to edge functions for backend processing
+
+4. **Add Mailchimp Secret**
+   - In Lovable, go to Cloud → Secrets
+   - Add a new secret named `MAILCHIMP_API_KEY`
+   - Paste your Mailchimp API key
+
+5. **Create an Edge Function**
+   - Create a new edge function called `send-contact-email`
+   - Use the Mailchimp API to send notifications when form is submitted
+   - Update the form in `src/pages/Contact.tsx` to call this edge function
+
+#### Option 2: Using Resend (Alternative)
+
+1. **Create a Resend Account**
+   - Go to [resend.com](https://resend.com) and sign up
+   - Verify your domain (or use their test domain for development)
+
+2. **Get Your Resend API Key**
+   - Go to API Keys section in Resend dashboard
+   - Create and copy your API key
+
+3. **Enable Lovable Cloud & Add Secret**
+   - Enable Lovable Cloud in your project
+   - Add a secret named `RESEND_API_KEY` with your API key
+
+4. **Create Edge Function**
+   - Create a `send-contact-email` edge function
+   - Use Resend's API to send email notifications
+   - Update form submission handler in `src/pages/Contact.tsx`
+
+#### Option 3: Using Formspree (No Code Solution)
+
+1. Go to [formspree.io](https://formspree.io) and create a free account
+2. Create a new form and get your form endpoint URL
+3. Update the form in `src/pages/Contact.tsx`:
+   ```typescript
+   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+   ```
+4. Formspree will forward all submissions to your email
+
+**Note:** For a complete email integration tutorial, refer to the Lovable Cloud documentation at [docs.lovable.dev](https://docs.lovable.dev/features/cloud)
 
 ## Project Setup
 

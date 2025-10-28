@@ -53,7 +53,7 @@ const Resources = () => {
   const importantLinks = [
     {
       name: "Integral University",
-      url: "http://www.integraluniversity.ac.in/",
+      url: "https://www.iul.ac.in",
       description: "Official university website",
     },
     {

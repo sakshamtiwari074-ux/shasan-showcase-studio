@@ -77,9 +77,12 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Available on request
-                    </p>
+                    <a 
+                      href="mailto:hasansaeedcontrol@gmail.com"
+                      className="text-sm text-primary hover:underline"
+                    >
+                      hasansaeedcontrol@gmail.com
+                    </a>
                   </div>
                 </div>
 
@@ -210,11 +213,20 @@ const Contact = () => {
             {/* Additional Info */}
             <Card className="mt-6 border-2 bg-gradient-to-br from-accent/5 to-secondary/5">
               <CardContent className="p-6">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Note:</strong> For current students at Integral University, 
-                  please use official university channels for course-related queries. For collaboration 
-                  opportunities, research inquiries, or academic discussions, feel free to use this contact form.
-                </p>
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">Note:</strong> For current students at Integral University, 
+                    please use official university channels for course-related queries. For collaboration 
+                    opportunities, research inquiries, or academic discussions, feel free to use this contact form.
+                  </p>
+                  <div className="pt-4 border-t border-border">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      <strong className="text-foreground">Email Integration:</strong> To receive form submissions via email, 
+                      follow the Mailchimp setup instructions in the README.md file. The form is ready to be connected 
+                      to your preferred email service provider.
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

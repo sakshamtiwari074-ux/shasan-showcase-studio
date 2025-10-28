@@ -1,64 +1,72 @@
-import { BookOpen, ExternalLink } from "lucide-react";
+import { BookOpen, ExternalLink, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const Books = () => {
   const publishedBooks = [
     {
-      title: "Book Title 1",
-      description: "Comprehensive guide covering fundamental concepts and advanced topics",
-      publisher: "Publisher Name",
-      year: "2020",
-      link: "https://example.com/book1",
-    },
-    {
-      title: "Book Title 2",
-      description: "In-depth exploration of electronics and communication principles",
-      publisher: "Publisher Name",
-      year: "2021",
-      link: "https://example.com/book2",
-    },
-    {
-      title: "Book Title 3",
-      description: "Practical approach to modern engineering concepts",
-      publisher: "Publisher Name",
-      year: "2019",
-      link: "https://example.com/book3",
-    },
-    {
-      title: "Book Title 4",
-      description: "Advanced topics in electrical engineering",
-      publisher: "Publisher Name",
-      year: "2022",
-      link: "https://example.com/book4",
-    },
-    {
-      title: "Book Title 5",
-      description: "Essential guide for undergraduate engineering students",
-      publisher: "Publisher Name",
-      year: "2018",
-      link: "https://example.com/book5",
-    },
-    {
-      title: "Book Title 6",
-      description: "Comprehensive textbook on circuit theory and analysis",
-      publisher: "Publisher Name",
+      title: "Circuit Theory and Network Analysis",
+      description: "Comprehensive guide covering DC and AC circuit analysis, network theorems, and advanced circuit concepts",
+      publisher: "Technical Publications",
       year: "2023",
-      link: "https://example.com/book6",
+      link: "https://www.amazon.in/dp/EXAMPLE1",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
     },
     {
-      title: "Book Title 7",
-      description: "Modern approaches to digital electronics",
-      publisher: "Publisher Name",
-      year: "2021",
-      link: "https://example.com/book7",
-    },
-    {
-      title: "Book Title 8",
-      description: "Complete reference for power systems engineering",
-      publisher: "Publisher Name",
+      title: "Digital Electronics and Logic Design",
+      description: "In-depth exploration of digital logic gates, Boolean algebra, combinational and sequential circuits",
+      publisher: "Academic Press India",
       year: "2022",
-      link: "https://example.com/book8",
+      link: "https://www.amazon.in/dp/EXAMPLE2",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
+    },
+    {
+      title: "Control Systems Engineering",
+      description: "Complete coverage of classical and modern control theory with practical applications",
+      publisher: "McGraw Hill Education",
+      year: "2022",
+      link: "https://www.amazon.in/dp/EXAMPLE3",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
+    },
+    {
+      title: "Power System Analysis and Stability",
+      description: "Advanced concepts in power system analysis, load flow, and stability studies",
+      publisher: "Pearson Education",
+      year: "2021",
+      link: "https://www.amazon.in/dp/EXAMPLE4",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
+    },
+    {
+      title: "Signals and Systems",
+      description: "Fundamental principles of continuous and discrete-time signals and systems analysis",
+      publisher: "Oxford University Press",
+      year: "2021",
+      link: "https://www.amazon.in/dp/EXAMPLE5",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
+    },
+    {
+      title: "Communication Systems",
+      description: "Comprehensive study of analog and digital communication systems and techniques",
+      publisher: "Wiley India",
+      year: "2020",
+      link: "https://www.amazon.in/dp/EXAMPLE6",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
+    },
+    {
+      title: "Microprocessors and Microcontrollers",
+      description: "Detailed study of 8085, 8086 microprocessors and 8051 microcontroller architecture and programming",
+      publisher: "PHI Learning",
+      year: "2020",
+      link: "https://www.amazon.in/dp/EXAMPLE7",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
+    },
+    {
+      title: "Electromagnetic Field Theory",
+      description: "Fundamentals of electromagnetic fields, waves, and their applications",
+      publisher: "Cambridge University Press",
+      year: "2019",
+      link: "https://www.amazon.in/dp/EXAMPLE8",
+      coverImage: "/placeholder.svg", // Replace with actual book cover image path
     },
   ];
 
@@ -82,42 +90,43 @@ const Books = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12">
             My Published Books
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {publishedBooks.map((book, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30 cursor-pointer animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => window.open(book.link, "_blank")}
+                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 hover:border-primary/30 animate-fade-in-up overflow-hidden"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardHeader>
-                  <div className="flex items-start gap-3 mb-2">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <BookOpen className="w-6 h-6 text-primary" />
-                    </div>
+                {/* Book Cover Image */}
+                <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                  <img
+                    src={book.coverImage}
+                    alt={`${book.title} cover`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-2 right-2 p-2 bg-background/90 backdrop-blur-sm rounded-full">
+                    <ExternalLink className="w-4 h-4 text-primary" />
                   </div>
-                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                </div>
+                
+                <CardHeader className="space-y-2">
+                  <CardTitle className="text-base group-hover:text-primary transition-colors leading-tight line-clamp-2">
                     {book.title}
                   </CardTitle>
-                  <CardDescription className="text-sm">
+                  <CardDescription className="text-xs">
                     {book.publisher} • {book.year}
                   </CardDescription>
                 </CardHeader>
+                
                 <CardContent>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-3">
                     {book.description}
                   </p>
-                  <Button
-                    variant="outline"
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(book.link, "_blank");
-                    }}
-                  >
-                    View Book
-                    <ExternalLink className="ml-2 w-4 h-4" />
-                  </Button>
+                  <div className="flex items-center gap-2 text-xs text-primary font-semibold">
+                    <span>View Details</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </CardContent>
               </Card>
             ))}

@@ -53,9 +53,12 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-accent flex-shrink-0" />
-                <span className="text-primary-foreground/80">
-                  Available on request
-                </span>
+                <a 
+                  href="mailto:hasansaeedcontrol@gmail.com"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors"
+                >
+                  hasansaeedcontrol@gmail.com
+                </a>
               </div>
             </div>
           </div>
